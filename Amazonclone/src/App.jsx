@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
-import Panel from './components/Panel'
-import Hero from './components/Hero'
-import ShopSection from './components/ShopSection'
 import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
+import Home from './pages/Home'
+import ProductPage from './pages/ProductPage'
+import Deals from './pages/Deals'
+import CustomerService from './pages/CustomerService'
+import Registry from './pages/Registry'
+import GiftCards from './pages/GiftCards'
+import Sell from './pages/Sell'
+import NotFound from './pages/NotFound'
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -39,9 +45,18 @@ function App() {
         totalCount={totalCount}
         setIsCartOpen={setIsCartOpen}
       />
-      <Panel />
-      <Hero />
-      <ShopSection searchQuery={searchQuery} addToCart={addToCart} />
+
+      <Routes>
+        <Route path="/" element={<Home searchQuery={searchQuery} addToCart={addToCart} />} />
+        <Route path="/product/:id" element={<ProductPage addToCart={addToCart} />} />
+        <Route path="/deals" element={<Deals />} />
+        <Route path="/customer-service" element={<CustomerService />} />
+        <Route path="/registry" element={<Registry />} />
+        <Route path="/gift-cards" element={<GiftCards />} />
+        <Route path="/sell" element={<Sell />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
       <Footer />
       <CartDrawer
         isOpen={isCartOpen}

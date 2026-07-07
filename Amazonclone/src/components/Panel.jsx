@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Panel() {
-  const [activeLink, setActiveLink] = useState("")
-  const links = ["Today's Deals", "Customer Service", "Registry", "Gift Cards", "Sell"]
+  const links = [
+    { name: "Today's Deals", path: "/deals" },
+    { name: "Customer Service", path: "/customer-service" },
+    { name: "Registry", path: "/registry" },
+    { name: "Gift Cards", path: "/gift-cards" },
+    { name: "Sell", path: "/sell" },
+  ]
 
   return (
     <div style={{ backgroundColor: "#222f3d", color: "white", height: "40px", display: "flex", alignItems: "center", padding: "0 10px", gap: "20px" }}>
@@ -16,19 +22,19 @@ function Panel() {
 
       <div style={{ display: "flex", gap: "15px", fontSize: "0.85rem", flexGrow: 1 }}>
         {links.map((link) => (
-          <p
-            key={link}
-            onClick={() => setActiveLink(link)}
-            style={{
+          <NavLink
+            key={link.path}
+            to={link.path}
+            style={({ isActive }) => ({
               cursor: "pointer",
               whiteSpace: "nowrap",
-              fontWeight: activeLink === link ? "700" : "normal",
-              textDecoration: activeLink === link ? "underline" : "none",
-              color: activeLink === link ? "#f08804" : "white"
-            }}
+              textDecoration: isActive ? "underline" : "none",
+              fontWeight: isActive ? "700" : "normal",
+              color: isActive ? "#f08804" : "white",
+            })}
           >
-            {link}
-          </p>
+            {link.name}
+          </NavLink>
         ))}
       </div>
 

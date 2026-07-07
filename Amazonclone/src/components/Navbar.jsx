@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar({ searchQuery, setSearchQuery, totalCount, setIsCartOpen }) {
   return (
     <div style={{ backgroundColor: "#0f1111", color: "white", height: "60px", display: "flex", alignItems: "center", justifyContent: "space-evenly", padding: "0 10px" }}>
 
       {/* Logo */}
-      <div style={{ border: "1px solid transparent", padding: "4px", cursor: "pointer" }}
+      <Link to="/" style={{ border: "1px solid transparent", padding: "4px", cursor: "pointer", display: "flex" }}
         onMouseEnter={e => e.currentTarget.style.borderColor = "white"}
         onMouseLeave={e => e.currentTarget.style.borderColor = "transparent"}
       >
@@ -14,7 +15,7 @@ function Navbar({ searchQuery, setSearchQuery, totalCount, setIsCartOpen }) {
           alt="Amazon"
           style={{ height: "35px", filter: "invert(1)" }}
         />
-      </div>
+      </Link>
 
       {/* Deliver to */}
       <div style={{ border: "1px solid transparent", padding: "4px", cursor: "pointer" }}
